@@ -18,9 +18,7 @@ class ATInternetBatchIntegration {
     @objc
     static func batchPushReceived(notification: NSNotification) {
         DispatchQueue.main.async {
-            // Ignore remote fetch notifications (background refresh)
-            if let payload = notification.userInfo,
-                UIApplication.shared.applicationState == .active {
+            if let payload = notification.userInfo {
                 self.trackFromBatchPush(payload: payload)
             }
         }
